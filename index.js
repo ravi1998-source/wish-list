@@ -1,9 +1,9 @@
 const express = require('express') // Handles routes
-const app = express()
+const app = express();
 
 const mongoose = require('mongoose') // Object Data modelling(OMD) for MongoDB and Node 
 
-const { PORT, URL } = require('./config')
+
 const cors = require('cors') // Allows servers to pass information in different domain
 
 const morgan = require('morgan') // A HTTP request logger middleware for NodeJs
@@ -17,7 +17,7 @@ app.use(morgan('tiny'))
 app.use(bodyParser.json())
 
 mongoose
-    .connect(URL, {
+    .connect('mongodb+srv://ontrack:ontrack@cluster0.04dqa.mongodb.net/test?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
@@ -37,4 +37,14 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`))
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+
+app.listen(port, () => {
+  console.log("Server started on port 3000");
+});
+
+
