@@ -17,7 +17,7 @@ app.use(morgan('tiny'))
 app.use(bodyParser.json())
 
 mongoose
-    .connect('mongodb+srv://ontrack:ontrack@cluster0.04dqa.mongodb.net/test?retryWrites=true&w=majority', {
+    .connect('mongo_url', {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
